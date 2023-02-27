@@ -1,12 +1,9 @@
 import express from "express";
-import mongoose from "mongoose";
+import dotenv from "dotenv";
+import routes from "./routes/routes";
 
-if (!process.env.DB_URI) {
-  console.log("DB_URI is not defined");
-  process.exit();
-}
-
+if (process.env.NODE_ENV?.toLowerCase() !== "production") dotenv.config();
 const server = express();
-const mongDB = mongoose.connect(process.env.DB_URI);
+routes(server);
 server.listen(process.env.PORT || 8000);
 console.log("Server is running on port " + process.env.PORT || 8000);
