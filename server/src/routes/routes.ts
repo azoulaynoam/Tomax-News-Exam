@@ -1,5 +1,5 @@
 import { Express } from "express";
-import news from "./news";
+import news from "../contollers/news";
 
 function setRoutes(server: Express) {
   server.get("/news/:category", news.get_news);

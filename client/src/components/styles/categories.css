@@ -1,0 +1,27 @@
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 1em 0;
+}
+
+.category-btn {
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin: 0.3rem;
+  border-radius: 1.5rem;
+  width: 6.5rem;
+  height: 1.3rem;
+  padding: 0.1rem;
+  text-align: center;
+}
+
+.category-btn.active {
+  background: #eee;
+}
+
+.category-btn:hover {
+  background: #eee;
+  cursor: pointer;
+}

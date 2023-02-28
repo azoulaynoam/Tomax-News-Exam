@@ -21,9 +21,14 @@ const categories = [
 ];
 
 async function get_news(
-  req: Request<{
-    category: categoriesEnum;
-  }>,
+  req: Request<
+    {
+      category: categoriesEnum;
+    },
+    any,
+    any,
+    { search?: string; page?: string }
+  >,
   res: Response
 ) {
   try {
@@ -32,14 +37,25 @@ async function get_news(
       res.sendStatus(400);
       throw new Error("Invalid category");
     }
+    console.log(
+      `https://newsapi.org/v2/top-headlines?country=${
+        process.env.COUNTRY_CODE
+      }&category=${category}${
+        req.query.search ? "&q=" + req.query.search : ""
+      }&pageSize=20&page=${req.query.page}&apiKey=${process.env.API_KEY}`
+    );
     const news = await axios
       .get(
-        `https://newsapi.org/v2/top-headlines?country=${process.env.COUNTRY_CODE}&category=${category}&apiKey=${process.env.API_KEY}`
+        `https://newsapi.org/v2/top-headlines?country=${
+          process.env.COUNTRY_CODE
+        }&category=${category}${
+          req.query.search ? "&q=" + req.query.search : ""
+        }&pageSize=20&page=${req.query.page}&apiKey=${process.env.API_KEY}`
       )
       .then((response) => response.data)
       .catch((error) => {
+        console.log(error);
         res.sendStatus(500);
-        throw new Error(error);
       });
     res.json(news);
   } catch (error) {
