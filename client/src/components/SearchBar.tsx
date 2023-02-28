@@ -1,11 +1,11 @@
 import React from "react";
-import { NewsType } from "./News";
+import { IArticle } from "./Article";
 import "./styles/searchbar.css";
 
 interface props {
   category: string;
   page: number;
-  setNews: (news: NewsType[], total: number) => void;
+  setNews: (news: IArticle[], total: number) => void;
 }
 
 class SearchBar extends React.Component<props, any> {
@@ -15,15 +15,11 @@ class SearchBar extends React.Component<props, any> {
     search: "",
   };
 
-  constructor(props: props) {
-    super(props);
-  }
-
-  getNews = () => {
+  getNews = (category: string, page: number) => {
     fetch(
-      `http://localhost:8000/news/${this.props.category}?page=${
-        this.props.page
-      }${this.state.search ? "&search=" + this.state.search : ""}`
+      `http://localhost:8000/news/${category}?page=${page}${
+        this.state.search ? "&search=" + this.state.search : ""
+      }`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -43,10 +39,11 @@ class SearchBar extends React.Component<props, any> {
       nextProps.page !== this.props.page ||
       nextProps.category !== this.props.category
     ) {
-      this.getNews();
-      return false;
+      document.getElementsByClassName("news")[0].scrollTop = 0;
+      this.getNews(nextProps.category, nextProps.page);
+      return true;
     }
-    return true;
+    return false;
   }
 
   render() {
@@ -59,7 +56,11 @@ class SearchBar extends React.Component<props, any> {
             this.setState({ search: props.target.value });
           }}
         />
-        <button onClick={this.getNews}>Search</button>
+        <button
+          onClick={() => this.getNews(this.props.category, this.props.page)}
+        >
+          Search
+        </button>
       </div>
     );
   }

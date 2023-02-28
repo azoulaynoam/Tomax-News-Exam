@@ -37,13 +37,6 @@ async function get_news(
       res.sendStatus(400);
       throw new Error("Invalid category");
     }
-    console.log(
-      `https://newsapi.org/v2/top-headlines?country=${
-        process.env.COUNTRY_CODE
-      }&category=${category}${
-        req.query.search ? "&q=" + req.query.search : ""
-      }&pageSize=20&page=${req.query.page}&apiKey=${process.env.API_KEY}`
-    );
     const news = await axios
       .get(
         `https://newsapi.org/v2/top-headlines?country=${

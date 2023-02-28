@@ -2,22 +2,23 @@ import SearchBar from "./components/SearchBar";
 import Categories from "./components/Categories";
 import "./App.css";
 import React from "react";
-import News, { NewsType } from "./components/News";
+import News from "./components/News";
+import Article, { IArticle } from "./components/Article";
 
-class App extends React.Component<{}> {
+class App extends React.Component {
   state: {
-    news: NewsType[];
+    news: IArticle[];
     category: string;
+    article: IArticle | null;
     page: number;
     total: number;
-  } = { news: [], category: "general", page: 0, total: 0 };
+  } = { news: [], category: "general", page: 0, total: 0, article: null };
 
   changeCategory = (category: string) => {
     this.setState({ category: category, page: 0 });
   };
 
-  setNews = (news: NewsType[], total: number) => {
-    console.log("setNews");
+  setNews = (news: IArticle[], total: number) => {
     this.setState({ news: news, total: total });
   };
 
@@ -27,7 +28,15 @@ class App extends React.Component<{}> {
     this.setState({ page: this.state.page + page });
   };
 
-  render() {
+  setArticle = (article: IArticle) => {
+    this.setState({ article: article });
+  };
+
+  unSetArticle = () => {
+    this.setState({ article: null });
+  };
+
+  NewsPage = () => {
     return (
       <div className="news-app">
         <SearchBar
@@ -38,11 +47,29 @@ class App extends React.Component<{}> {
         <Categories changeCategory={this.changeCategory} />
         <News
           news={this.state.news}
-          pagination={this.setPage}
-          endOfNews={this.state.page * 20 >= this.state.total}
+          nextPage={this.setPage}
+          setArticle={this.setArticle}
+          page={this.state.page}
+          endOfNews={(this.state.page + 1) * 20 >= this.state.total}
         />
       </div>
     );
+  };
+
+  ArticlePage = (article: IArticle) => {
+    return (
+      <div className="news-app">
+        <div className="back-btn">
+          <button onClick={this.unSetArticle}>Back</button>
+        </div>
+        <Article {...article} />
+      </div>
+    );
+  };
+
+  render() {
+    if (this.state.article) return this.ArticlePage(this.state.article);
+    else return this.NewsPage();
   }
 }
 
