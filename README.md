@@ -21,7 +21,16 @@ Client Side Implementation:
  
 Stack: React.js Typescript
 
+How to setup the server & client:
+ - Download the repository
+ - Run "yarn install" in both the "server" and "client" folders.
+ - set-up a .enb file in the "server" folder like the .env-example file.
+ - run the server by running the command "yarn start" inside the server folder.
+ - run the client by running the command "yarn start" inside the client folder.
+
 Problems:
-* the API mostly not giving us the content and image and the content length is up to 260 characters....
+* the News API is mostly not giving us the content and image and the content length is up to 260 characters....
+
+for any question please contact me by EMail, Whatsapp or a Phone call...
 
 Thank you for the opportunity</br>
