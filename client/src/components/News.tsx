@@ -14,6 +14,9 @@ interface NewsProps {
   page: number;
 }
 
+/**
+ * News component
+ */
 class News extends React.Component<NewsProps> {
   isLoading = false;
 

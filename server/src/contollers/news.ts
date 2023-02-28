@@ -20,6 +20,11 @@ const categories = [
   "technology",
 ];
 
+/**
+ * Get news endpoint
+ * @param req
+ * @param res
+ */
 async function get_news(
   req: Request<
     {
@@ -47,7 +52,6 @@ async function get_news(
       )
       .then((response) => response.data)
       .catch((error) => {
-        console.log(error);
         res.sendStatus(500);
       });
     res.json(news);

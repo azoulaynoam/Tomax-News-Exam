@@ -15,6 +15,9 @@ interface props {
   changeCategory: (category: string) => void;
 }
 
+/**
+ * Categories component
+ */
 class Categories extends React.Component<props, any> {
   state: {
     chosen: string;

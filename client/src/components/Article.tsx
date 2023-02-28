@@ -2,6 +2,9 @@ import React from "react";
 import dayjs from "dayjs";
 import "./styles/article.css";
 
+/**
+ * Article Interface
+ */
 export interface IArticle {
   source: {
     id: string;
@@ -16,6 +19,9 @@ export interface IArticle {
   content: string | null;
 }
 
+/**
+ * Article component
+ */
 class Article extends React.Component<IArticle> {
   render() {
     return (

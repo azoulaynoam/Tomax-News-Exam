@@ -8,6 +8,9 @@ interface props {
   setNews: (news: IArticle[], total: number) => void;
 }
 
+/**
+ * SearchBar component
+ */
 class SearchBar extends React.Component<props, any> {
   state: {
     search: string;

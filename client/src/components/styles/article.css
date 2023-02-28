@@ -26,7 +26,7 @@
 }
 
 .article-image {
-  width: 100%;
+  width: 750px;
   height: 300px;
   object-fit: cover;
   margin-bottom: 20px;
@@ -44,6 +44,8 @@
   color: #333;
   margin-bottom: 20px;
   width: 750px;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 .article-content {
@@ -51,6 +53,8 @@
   color: #333;
   margin-bottom: 20px;
   width: 750px;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 @media (max-width: 1024px) {
@@ -60,6 +64,7 @@
 
   .article-image {
     height: 200px;
+    width: 80vw;
   }
 
   .article-description {
@@ -78,6 +83,7 @@
 
   .article-image {
     height: 200px;
+    width: 85vw;
   }
 
   .article-description {
