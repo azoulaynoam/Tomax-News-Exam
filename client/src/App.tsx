@@ -36,7 +36,11 @@ class App extends React.Component<{}> {
           setNews={this.setNews}
         />
         <Categories changeCategory={this.changeCategory} />
-        <News news={this.state.news} pagination={this.setPage} />
+        <News
+          news={this.state.news}
+          pagination={this.setPage}
+          endOfNews={this.state.page * 20 >= this.state.total}
+        />
       </div>
     );
   }

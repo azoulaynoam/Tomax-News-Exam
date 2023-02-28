@@ -39,7 +39,10 @@ class SearchBar extends React.Component<props, any> {
     nextState: Readonly<any>,
     nextContext: any
   ): boolean {
-    if (nextProps.page !== this.props.page) {
+    if (
+      nextProps.page !== this.props.page ||
+      nextProps.category !== this.props.category
+    ) {
       this.getNews();
       return false;
     }

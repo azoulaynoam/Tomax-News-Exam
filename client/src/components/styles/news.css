@@ -27,6 +27,12 @@
   cursor: pointer;
 }
 
+.end-of-news {
+  text-align: center;
+  font-size: 1rem;
+  color: #999;
+}
+
 .news-item-title {
   font-size: 0.8rem;
   font-weight: 600;
